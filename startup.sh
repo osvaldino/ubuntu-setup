@@ -18,14 +18,6 @@ read git_config_user_email
 git config --global user.email $git_config_user_email
 clear
 
-echo "Can I set VIM as your default GIT editor for you? (y/n)"
-read git_core_editor_to_vim
-if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
-	git config --global core.editor vim
-else
-	echo "Okay, no problem. :) Let's move on!"
-fi
-
 echo "Generating a SSH Key"
 ssh-keygen -t rsa -b 4096 -C $git_config_user_email
 ssh-add ~/.ssh/id_rsa
@@ -46,10 +38,6 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-echo 'installing vim'
-sudo apt install vim -y
-clear
-
 echo 'installing code'
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -69,9 +57,6 @@ code --install-extension pmneo.tsimporter
 code --install-extension waderyan.gitblame
 code --install-extension yzhang.markdown-all-in-one
 
-echo 'installing spotify' 
-snap install spotify
-
 echo 'installing chrome' 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
@@ -90,8 +75,8 @@ export NVM_DIR="$HOME/.nvm"
 
 source ~/.zshrc
 nvm --version
-nvm install 12
-nvm alias default 12
+nvm install v21
+nvm alias default 21
 node --version
 npm --version
 
